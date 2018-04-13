@@ -5,6 +5,13 @@
     <title>Twyta {% block title %}{% endblock %}</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+<p>
+    <a href="{% url 'main' %}"><strong>Twyta</strong></a>
+    <a href="{% url 'user_messages' %}">Messages</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</p>
+{% endif %}
     {% block content %}
     {% endblock %}
 </body>

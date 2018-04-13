@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Messages</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %} Messages {% endblock %}
+{% block content %}
 {% if form %}
     <div>
     <form action="" method="POST">
@@ -15,15 +11,28 @@
     </div>
     <hr>
 {% endif %}
+
+{% if object %}
+Content: {{ object.content }}<br>
+From: {{ object.from_user }}<br>
+Sent: {{ object.sent_date }}<br>
+{% endif %}
+
+{% if messages_to %}
 Received:
 <hr>
 {% for msg in messages_to %}
     <div>
-    from {{ msg.from_user }} to {{ msg.to_user }} on {{ msg.sent_date }}:
-    <br>{{ msg.content }}
+    {% if msg.already_read %}
+    <a href="{% url 'user_message_detail' msg.pk %}">Message</a> from {{ msg.from_user }} to {{ msg.to_user }} on {{ msg.sent_date }}
+    {% else %}
+    <strong><a href="{% url 'user_message_detail' msg.pk %}">Message</a> from {{ msg.from_user }} to {{ msg.to_user }} on {{ msg.sent_date }}</strong>
+    {% endif %}
     </div>
     <br>
 {% endfor %}
+{% endif %}
+{% if messages_to %}
 <br>
 Sent:
 <hr>
@@ -34,7 +43,6 @@ Sent:
     </div>
     <br>
 {% endfor %}
+{% endif %}
 
-
-</body>
-</html>
+{% endblock %}

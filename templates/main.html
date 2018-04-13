@@ -16,8 +16,9 @@
 
 {% for obj in object_list %}
     <div>
-    {{ obj.author }} on {{ obj.creation_date }}:
+        <a href="{% url 'profile' obj.author.pk %}">{{ obj.author }}</a> on {{ obj.creation_date }}:
     <br>{{ obj.content }}
+    <br><a href="{% url 'post_details' obj.pk %}">Details</a>
     </div>
     <hr>
 {% endfor %}

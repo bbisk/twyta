@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls import url
 
 from app.views import MainPageView, AddPostView, UserPostView, PostDetailView, UserMessageView, SendMessageView, \
-    UserProfileView
+    UserProfileView, UserMessageDetailView, UserLoginView, UserLogoutView
 
 urlpatterns = [
     url('admin/', admin.site.urls),
@@ -26,7 +26,10 @@ urlpatterns = [
     url(r'^me/$', UserPostView.as_view(), name="user_posts"),
     url(r'^user/(?P<pk>(\d)+)/$', UserProfileView.as_view(), name="profile"),
     url(r'^messages/$', UserMessageView.as_view(), name="user_messages"),
+    url(r'^messages/(?P<pk>(\d)+)/$', UserMessageDetailView.as_view(), name="user_message_detail"),
     url(r'^messages/send/(?P<pk>(\d)+)/$', SendMessageView.as_view(), name="send_message"),
     url(r'^post/(?P<pk>(\d)+)/$', PostDetailView.as_view(), name="post_details"),
+    url(r'^login/$', UserLoginView.as_view(), name="login"),
+    url(r'^logout/$', UserLogoutView.as_view(), name="logout"),
 
 ]

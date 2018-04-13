@@ -2,9 +2,11 @@
 {% block title %} User {% endblock %}
 {% block content %}
     <div>
-    {{ object.username }}' profile
+    {{ object.username }}'s profile
     <br>
+    {% if object.pk != request.user.id %}
         <a href="{% url 'send_message' object.pk %}">Sent a message</a>
+    {% endif %}
     </div>
     <br>
     <div>
