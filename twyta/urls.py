@@ -16,13 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 
-from app.views import MainPageView, AddPostView, UserPostView, PostDetailView
+from app.views import MainPageView, AddPostView, UserPostView, PostDetailView, UserMessageView, SendMessageView, \
+    UserProfileView
 
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^$', MainPageView.as_view(), name='main'),
     url(r'^add/$', AddPostView.as_view(), name='add_post'),
     url(r'^me/$', UserPostView.as_view(), name="user_posts"),
+    url(r'^user/(?P<pk>(\d)+)/$', UserProfileView.as_view(), name="profile"),
+    url(r'^messages/$', UserMessageView.as_view(), name="user_messages"),
+    url(r'^messages/send/$', SendMessageView.as_view(), name="send_message"),
     url(r'^post/(?P<pk>(\d)+)/$', PostDetailView.as_view(), name="post_details"),
 
 ]
