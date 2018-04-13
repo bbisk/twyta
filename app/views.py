@@ -63,7 +63,8 @@ class SendMessageView(CreateView, UserMessageView):
     template_name = 'msg.html'
 
     def form_valid(self, form):
-        post_form = form.save(commit=False)
-        post_form.author = self.request.user
-        post_form.save()
-        return redirect('main')
+        message_form = form.save(commit=False)
+        message_form.from_user = self.request.user
+        message_form.to_user = User.objects.get(pk=self.kwargs['pk'])
+        message_form.save()
+        return redirect('user_messages')

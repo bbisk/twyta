@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Main {% endblock %}
+{% block content %}
+{% if form %}
+    <div>
+    <form action="" method="POST">
+    {{ form.as_p }}
+    {%  csrf_token %}
+    <button type="submit">Add post</button>
+    </form>
+    </div>
+    <hr>
+{% else %}
+    <p><a href="{% url 'add_post' %}">Add post</a></p>
+{% endif %}
+
+{% for obj in object_list %}
+    <div>
+    {{ obj.author }} on {{ obj.creation_date }}:
+    <br>{{ obj.content }}
+    </div>
+    <hr>
+{% endfor %}
+{% endblock %}

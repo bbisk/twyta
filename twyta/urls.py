@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^me/$', UserPostView.as_view(), name="user_posts"),
     url(r'^user/(?P<pk>(\d)+)/$', UserProfileView.as_view(), name="profile"),
     url(r'^messages/$', UserMessageView.as_view(), name="user_messages"),
-    url(r'^messages/send/$', SendMessageView.as_view(), name="send_message"),
+    url(r'^messages/send/(?P<pk>(\d)+)/$', SendMessageView.as_view(), name="send_message"),
     url(r'^post/(?P<pk>(\d)+)/$', PostDetailView.as_view(), name="post_details"),
 
 ]

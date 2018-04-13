@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} User {% endblock %}
+{% block content %}
+    <div>
+    {{ object.username }}' profile
+    <br>
+        <a href="{% url 'send_message' object.pk %}">Sent a message</a>
+    </div>
+    <br>
+    <div>
+    {% for tweet in object.tweet_set.all %}
+    {{ tweet.creation_date }}:
+    <br>{{ tweet.content }}
+    </div>
+    <hr>
+    {% endfor %}
+    </div>
+{% endblock %}
