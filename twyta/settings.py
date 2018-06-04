@@ -78,10 +78,9 @@ WSGI_APPLICATION = 'twyta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'twyta',
+        'NAME': 'postgres',
         'USER' : 'postgres',
-        'PASSWORD' : 'coderslab',
-        'HOST' : 'localhost',
+        'HOST' : 'db',
     }
 }
 
